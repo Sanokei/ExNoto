@@ -1,0 +1,69 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+}
+
+.container {
+  height: 200vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.planet-text {
+  position: absolute;
+  font-size: 4rem;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%
+  , -50%);
+  z-index: 2;
+  text-align: center;
+}
+
+.planet-model {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  --poster-color: #e2e8f0;
+  --progress-bar-color: rgba(30, 41, 59, .5);
+  --progress-bar-height: 10px;
+}
+
+.wavy-dunes {
+  position: absolute;
+  background: url('https://i.pinimg.com/originals/af/52/87/af5287a1edfb83eb1bf018fece4d5f27.png') no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  top: 100vh; /* Add this line */
+}
+
+.moon-model {
+  transform: scale(0.25);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 100vh; /* Add this line */
+  --poster-color: #e2e8f0;
+  --progress-bar-color: rgba(30, 41, 59, .5);
+  --progress-bar-height: 10px;
+}
+
+.moon-container {
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
