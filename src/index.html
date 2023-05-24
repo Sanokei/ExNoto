@@ -6,25 +6,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;800&display=swap" rel="stylesheet">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
-  <div id="container" class="container">
-    <div class="planet-text">Translate the world</div>
-    <model-viewer class="planet-model" src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/lowpolyplanet.glb?v=1684581353900" auto-rotate auto-rotate-delay="0" shadow-intensity="1"></model-viewer>
-    <div class="pin-container">
-      <div class="wavy-dunes"></div>
+  <nav>
+    <div class="logo">
+      ex noto
     </div>
-    
-    <div class="pin-container">
-      <div class="moon-container">
-        <div class="moon-text">Explore your unknown</div>
-        <model-viewer class="moon-model" src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/lowpolymoon.gltf?v=1684684719224" auto-rotate auto-rotate-delay="0"></model-viewer>
+    <div class="links">
+      <a href="">Get Started</a>
+      <a href="">Link 2</a>
+      <a href="">Link 3</a>
+      <a href="">Link 4</a>
+    </div>
+  </nav>
+  <div id="container" class="container">
+    <div class="planets-container">
+      <div class="earth-container">
+        <div class="planet-text">Translate the world</div>
+        <!-- shadow-intensity="1" Got rid of it for text-->
+        <model-viewer class="planet-model" style="width: 100%; height: 100vh; top: 0px;  position: sticky;" src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/lowpolyplanet.glb?v=1684581353900"
+          auto-rotate 
+          auto-rotate-delay="0"
+          min-camera-orbit='auto auto 50%'
+          max-camera-orbit='auto auto 60%'
+          camera-orbit='auto auto 12m'
+          min-field-of-view='80deg'
+          max-field-of-view='80deg'
+          camera-controls
+          camera-target="0m 6m 0m" 
+          disable-tap
+          disable-pan
+          interaction-prompt = "none"
+          orbit-pivot="0 1 0"
+        ></model-viewer>
+      </div>
+      <div class="dune-moon-container" id="dune-moon-container">
+        <div class="moon-container" id="moon-container">
+          <div class="moon-text" id="moon-text">Explore your unknown</div>
+          <model-viewer class="moon-model" id="moon-model" src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/lowpolymoon.gltf?v=1684684719224" auto-rotate auto-rotate-delay="0" rotation-per-second="-100%"></model-viewer>
+        </div>
+        <div class="pin-container">
+          <div class="wavy-dunes"></div>
+        </div>
+      </div>
+      <div class="star-container">
+        <canvas class="starback-canvas">
+        </canvas>
+      </div>
+      <div class="demo-container">
+        <div class="demo">
+          <h1>sljulasjdl</h1>
+        </div>
       </div>
     </div>
+  </div>
+  <footer>
+    by <a href="m" target="_blank" rel="noopener">Sano</a> <span class="heart">&hearts;</span>
+  </footer>
+
+
+
   <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
   <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
   <script src="script.js"></script>
+  <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
+  <script>
+    const starContainer = document.querySelector(".starback-canvas");
+    const starback = new Starback(starContainer, {
+        type: 'dot',
+        quantity: 100,
+        direction: 225,
+        randomOpacity: true,
+        backgroundColor: 'transparent',
+    })
+  </script>
 </body>
 </html>

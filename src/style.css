@@ -3,36 +3,46 @@
 }
 
 body {
+  overscroll-behavior-y: none;
+  background-size: cover;
   margin: 0;
   font-family: 'Manrope', sans-serif;
+  color:lavender;
 }
 
 .container {
-  height: 200vh;
+  height: 500vh;
   overflow-y: auto;
   position: relative;
+}
+
+.planets-container
+{
+  height: 200vh;
 }
 
 .planet-text {
   position: absolute;
   font-size: 4rem;
-  top: 5%;
+  top: 85vh;
   left: 50%;
   transform: translate(-50%
   , -50%);
   z-index: 2;
   text-align: center;
+  color:rgb(15, 15, 15)
 }
 
 .planet-model {
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: -5vh;
   left: 0;
   --poster-color: #e2e8f0;
-  --progress-bar-color: rgba(30, 41, 59, .5);
+  --progress-bar-color: rgba(30, 41, 59, 0);
   --progress-bar-height: 10px;
+  z-index: 1;
 }
 
 .wavy-dunes {
@@ -42,28 +52,140 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 1;
-  top: 100vh; /* Add this line */
+
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-container
+{
+  position: relative;
 }
 
 .moon-model {
-  transform: scale(0.25);
   width: 100%;
   height: 100vh;
-  position: absolute;
-  top: 100vh; /* Add this line */
   --poster-color: #e2e8f0;
-  --progress-bar-color: rgba(30, 41, 59, .5);
+  --progress-bar-color: rgba(30, 41, 59, 0);
   --progress-bar-height: 10px;
 }
 
 .moon-container {
   z-index: 0;
+  height: 100vh;
 }
 
-.star {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #ffffff;
-  border-radius: 50%;
+.moon-text {
+  color:#e2e8f0;
+  font-size: 12rem;
 }
+
+.dune-moon-container{
+  position: absolute;
+  top: 100vh;
+  width: 100%;
+}
+
+.earth-container
+{
+  height: 100vh;
+}
+
+.demo-container
+{
+  top: 190vh;
+  position: relative;
+  height: 100vh;
+}
+
+.star-container {
+  position: relative;
+}
+
+.starback-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 160vh;
+  object-fit: cover;
+}
+
+/*  */
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background-color: #eaeaea;
+  transition: top 400ms ease-in-out;
+  z-index: 4;
+}
+
+nav.scroll-up,
+nav:focus-within {
+  top: 0;
+}
+
+nav.scroll-down {
+  top: -100%;
+}
+
+.links {
+  display: flex;
+  margin: 0 -1em;
+}
+
+.links a {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color:#0f0f0f;
+}
+
+nav a {
+  color: #0f0f0f;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+section {
+  width: 65%;
+  margin: 0 auto;
+}
+
+section h1 {
+  font-size: 2rem;
+}
+
+section p {
+  font-size: 1.25rem;
+  line-height: 140%;
+}
+
+footer {
+  padding: 1em;
+  text-align: center;
+  background-color: #FFDFB9;
+  position: fixed;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer .heart {
+  color: #DC143C;
+}
+/*  */
