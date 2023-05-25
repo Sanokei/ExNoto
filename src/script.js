@@ -142,7 +142,7 @@ const backgroundAnimation = gsap.timeline({
 backgroundAnimation.to(planetsContainer, {
   easing: "linear",
 })
-.to('.star-container .sb-star', {
+.to('.star-container', {
   duration: 1, // change this number to control the speed of animation
   opacity: 1,
   repeat: -1, // repeat the animation indefinitely
@@ -191,7 +191,7 @@ const moonTimeline = gsap.timeline({
     pin: [duneMoonContainer, starbackCanvas],
     onUpdate: (self) => {
       const progress = self.progress;
-      const xPos = Math.sin(progress * Math.PI * 2) * (moonContainer.offsetWidth * 0.5);
+      const xPos = Math.sin((progress + (progress * .10)) * Math.PI * 2) * (moonContainer.offsetWidth * 0.4);
       const yPos = -(Math.cos(progress * Math.PI * 2) * (moonContainer.offsetHeight * 0.3)); // 
       gsap.set(moonModel, { x: xPos, y: yPos }); // Update the moon model position
     },
@@ -220,25 +220,30 @@ const demoTimeline = gsap.timeline({
 });
 
 // Set the initial size and position of the highlight
-gsap.set(".highlight", {
-  position: "absolute",
-  left: 0,
-  width: 0,
-  height: "33%",
-  backgroundColor: "#3a8fff",
-  transform: "translate(50%,50%)",
-  opacity: 0.5,
-});
+// gsap.set(".highlight", {
+//   position: "absolute",
+//   left: "50%",
+//   top: "50%",
+//   width: 0,
+//   height: "100%",
+//   backgroundColor: "#3a8fff",
+//   transform: "translate(-50%, -50%)",
+//   opacity: 0.5,
+// });
+
+const luminator = lumin(demoText);
 
 demoTimeline
   .to(demoText, {
-    opacity: 1,
-  },">")
-  .to(".highlight", {
-      width: "60%",
-      ease: "power2.inOut",
-  },">")
-  .to(pinDemo, {
-    
+    opacity: 1
+  }, ">")
+  .set(luminator, {
+    progress: 0 // set progress to 0 so the highlighting doesn't start until the timeline reaches this point
+  }, ">")
+  .to(luminator, {
+    progress: 100, // highlight fully from 0 to 100 percent
+    duration: demoTimeline.duration(), // match the highlight duration to the length of the timeline
+    ease: "none"
   })
+  .to()  
 ;

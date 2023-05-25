@@ -99,13 +99,6 @@ body {
   height: 100vh;
 }
 
-.demo-container
-{
-  top: 300vh;
-  position: relative;
-  height: 100vh;
-}
-
 .star-container {
   position: relative;
 }
@@ -120,29 +113,48 @@ body {
   object-fit: cover;
 }
 
+.demo-container
+{
+  top: 300vh;
+  position: relative;
+  height: 100vh;
+}
+
 .demo-text
 {
   color: #e1e7ef;
   opacity: 0;
   font-size: 8rem;
-  /* transform: translate(50%, 0); */
-  text-align: center;
-}
-
-.highlight
-{
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
   position: absolute;
-  width: 0;
-  height: 33%;
-  background-color: #3a8fff;
-  transform: translate(50%,50%);
-  opacity: 0.5;
+  text-align: center;
 }
 
 .pin-demo
 {
   height: 100vh;
 }
+
+/* DIRTY HACK DONT LOOK */
+ins
+{
+  background: var(--lumin-background-color, rgba(0, 204, 255, 0.631)) !important;
+}
+
+/* .highlight
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 10%;
+  background-color: #3a8fff;
+  transform: translate(-50%,-50%);
+  opacity: 0.5;
+} */
 
 /* NAV AND FOOTER */
 nav {
