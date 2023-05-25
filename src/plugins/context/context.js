@@ -135,37 +135,38 @@ class ContextMenu {
             item.classList.add('has-subitems');
             item.addEventListener('click', openSubItems);
             item.addEventListener('mousemove', openSubItems);
-        } else {
-            item.addEventListener('click', e => { 
-                this.hideSubMenus();
-
-                if (item.classList.contains('disabled'))
-                    return;
-
-                if (data.hasOwnProperty('onclick') && typeof data['onclick'] === 'function') {
-                    const event = {
-                        handled: false,
-                        item: item,
-                        label: label,
-                        hotkey: hotkey,
-                        items: this.items,
-                        data: data
-                    };
-        
-                    data['onclick'](event);
-        
-                    if (!event.handled) {
-                        this.hide();
-                    }
-                } else {
-                    this.hide();
-                }
-            });
-
-            item.addEventListener('mousemove', e => {
-                this.hideSubMenus();
-            });
         }
+        // else {
+        //     item.addEventListener('click', e => { 
+        //         this.hideSubMenus();
+
+        //         if (item.classList.contains('disabled'))
+        //             return;
+
+        //         if (data.hasOwnProperty('onclick') && typeof data['onclick'] === 'function') {
+        //             const event = {
+        //                 handled: false,
+        //                 item: item,
+        //                 label: label,
+        //                 hotkey: hotkey,
+        //                 items: this.items,
+        //                 data: data
+        //             };
+        
+        //             data['onclick'](event);
+        
+        //             if (!event.handled) {
+        //                 this.hide();
+        //             }
+        //         } else {
+        //             this.hide();
+        //         }
+        //     });
+
+        //     item.addEventListener('mousemove', e => {
+        //         this.hideSubMenus();
+        //     });
+        // }
 
         return item;
     }

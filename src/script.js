@@ -51,7 +51,7 @@ const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 window.addEventListener("scroll", () => {
   if (mediaQuery && !mediaQuery.matches) {
-    throttle(handleNavScroll, 125);
+    throttle(handleNavScroll, 225);
   }
 });
 
@@ -188,7 +188,7 @@ const moonTimeline = gsap.timeline({
     scrub: 0.5,
     pin: [duneMoonContainer, starbackCanvas],
     onUpdate: (self) => {
-      const progress = self.progress;
+      const progress = self.progress + .10;
       const xPos = Math.sin((progress + (progress * .10)) * Math.PI * 2) * (moonContainer.offsetWidth * 0.4);
       const yPos = -(Math.cos(progress * Math.PI * 2) * (moonContainer.offsetHeight * 0.3)); // 
       gsap.set(moonModel, { x: xPos, y: yPos }); // Update the moon model position
@@ -222,7 +222,7 @@ const contextMenu = new ContextMenu(document.body, [
   {text: 'Inspect', hotkey: 'Ctrl+Shift+I', onclick: clickHandler},
 ]);
 
-contextMenu.install();
+// pinDemo.appendChild(contextMenu);
 contextMenu.show(mousePointer.offsetLeft + 480, mousePointer.offsetTop + 20)
 
 const demoTimeline = gsap.timeline({
@@ -230,7 +230,7 @@ const demoTimeline = gsap.timeline({
     trigger: demoContainer,
     // start: () => "top center",
     start: "50% 50%",
-    end: () => "bottom+=2000 top",
+    end: () => "bottom+=1700 top",
     scrub: true,
     pin: pinDemo,
     // toggleActions: 'play reverse play reverse',
@@ -240,31 +240,20 @@ const demoTimeline = gsap.timeline({
 const luminator = lumin(demoText);
 
 demoTimeline
-  .add('myLabel') // .addLabel() also works 
   .to(demoText, {
     opacity: 1
-  }, 'myLabel')
-  .set(luminator, {
-    progress: 10 // set progress to 0 so the highlighting doesn't start until the timeline reaches this point
-  })
+  }, '<100%')
   .to(luminator, {
     progress: 100, // highlight fully from 0 to 100 percentease: "none"
-  },"<")
-  .set(mousePointer, {
-    x:"50%",
-    y:"50%"
-  }) //  center the element
+  },">")
   .to(mousePointer, {
-    x:300,
+    x:"25vw",
     y:100,
     z:20
   }, "<")
   .set(".context", {
     opacity: 1,
   },">")
-  // .add(
-  //   () => contextMenu.show(mousePointer.offsetLeft + 480, mousePointer.offsetTop + 90)
-  //   , ">"
-  // ) 
 ;
 
+/*             Section 4                */
