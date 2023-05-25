@@ -51,16 +51,23 @@
         <div class="pin-container">
           <div class="wavy-dunes"></div>
         </div>
-      </div>
-      <div class="star-container">
-        <canvas class="starback-canvas">
-        </canvas>
-      </div>
-      <div class="demo-container">
-        <div class="demo">
-          <h1>sljulasjdl</h1>
+        <div class="star-container">
+          <canvas class="starback-canvas">
+          </canvas>
         </div>
       </div>
+      
+      <div class="demo-container">
+        <div class="pin-demo">
+          <div class="demo-text" id="demo-text">
+            From the Known
+          </div>
+          <div class="highlight"></div>
+          </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <footer>
@@ -77,11 +84,13 @@
     const starContainer = document.querySelector(".starback-canvas");
     const starback = new Starback(starContainer, {
         type: 'dot',
-        quantity: 100,
-        direction: 225,
+        quantity: 160,
+        directionX: 0.5,
+        directionY: 0.5,
+        distanceX: 0.2,
         randomOpacity: true,
         backgroundColor: 'transparent',
-    })
-  </script>
+    });
+</script>
 </body>
 </html>

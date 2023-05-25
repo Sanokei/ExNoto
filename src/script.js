@@ -59,19 +59,21 @@ window.addEventListener("scroll", () => {
 
 const container = document.getElementById("container");
 const body = document.querySelector("body");
+
+const earthContainer = document.querySelector(".earth-container");
 const planetsContainer = document.querySelector(".planets-container");
 const planetModel = document.querySelector(".planet-model");
 const planetText = document.querySelector(".planet-text");
+
 const moonContainer = document.querySelector(".moon-container");
 const moonModel = document.querySelector(".moon-model");
 const moonText = document.querySelector(".moon-text");
 const duneImage = document.querySelector(".wavy-dunes");
-const backgroundOverlay = document.querySelector(".background-overlay");
-const earthContainer = document.querySelector(".earth-container");
 const duneMoonContainer = document.querySelector(".dune-moon-container");
+const starbackCanvas = document.querySelector('.starback-canvas');
 
 gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.normalizeScroll(true) // breaks w/o it cuz zoom on model viwer for planet
+ScrollTrigger.normalizeScroll(true) // TODO: breaks w/o it cuz zoom on model viwer for planet
 
 ScrollTrigger.defaults({
   //restart onEnter, complete onLeave, resume onEnterBack, reverse onLeaveBack
@@ -175,7 +177,7 @@ duneImage.style.position = "fixed";
 duneImage.style.top = 0;
 duneImage.style.left = 0;
 moonModel.style.position = "fixed";
-moonModel.style.bottom = "-50%"; // Adjust the position as needed
+moonModel.style.bottom = "-20%"; // Adjust the position as needed
 moonModel.style.left = "50%"; // Adjust the position as needed
 moonModel.style.transform = "translate(-50%, 0) scale(.25)"; // Center and scale the moon model
 moonModel.style.zIndex = "-1"; // Set a negative z-index to place it behind the dune image
@@ -184,12 +186,14 @@ const moonTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: moonContainer,
     start: () => "top center-=30%", // Start the animation when the top of the trigger element reaches the vertical center of the viewport
-    end: () => "bottom+=70% bottom", // Animation ends when the bottom of the trigger element reaches the vertical center of the viewport
-    scrub: true,
-    pin: duneMoonContainer,
+    end: () => "bottom+=180% bottom", // Animation ends when the bottom of the trigger element reaches the vertical center of the viewport
+    scrub: 0.5,
+    pin: [duneMoonContainer, starbackCanvas],
     onUpdate: (self) => {
-      const yPos = -(self.progress * (moonContainer.offsetHeight * .6)); // Calculate the vertical position based on scroll progress
-      gsap.set(moonModel, { y: yPos }); // Update the moon model position
+      const progress = self.progress;
+      const xPos = Math.sin(progress * Math.PI * 2) * (moonContainer.offsetWidth * 0.5);
+      const yPos = -(Math.cos(progress * Math.PI * 2) * (moonContainer.offsetHeight * 0.3)); // 
+      gsap.set(moonModel, { x: xPos, y: yPos }); // Update the moon model position
     },
   },
 });
@@ -198,3 +202,43 @@ const moonTimeline = gsap.timeline({
 moonTimeline.to(moonModel, {})
 
 /*             Section 3                */
+const demoContainer = document.querySelector(".demo-container");
+const pinDemo = document.querySelector(".pin-demo");
+const demoText = document.querySelector(".demo-text");
+
+const demoTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: demoContainer,
+    // start: () => "top center",
+    start: "50% 50%",
+    end: () => "bottom+=2000vh top",
+    scrub: 0.5,
+    pin: pinDemo,
+    markers:true,
+    // toggleActions: 'play reverse play reverse',
+  },
+});
+
+// Set the initial size and position of the highlight
+gsap.set(".highlight", {
+  position: "absolute",
+  left: 0,
+  width: 0,
+  height: "33%",
+  backgroundColor: "#3a8fff",
+  transform: "translate(50%,50%)",
+  opacity: 0.5,
+});
+
+demoTimeline
+  .to(demoText, {
+    opacity: 1,
+  },">")
+  .to(".highlight", {
+      width: "60%",
+      ease: "power2.inOut",
+  },">")
+  .to(pinDemo, {
+    
+  })
+;

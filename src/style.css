@@ -1,5 +1,13 @@
+/* Add these lines to hide the scrollbar for Chrome, Safari, and Edge */
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* Fucking Firefox istg */
+html
+{ 
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
 }
 
 body {
@@ -11,7 +19,7 @@ body {
 }
 
 .container {
-  height: 500vh;
+  height: 1000vh;
   overflow-y: auto;
   position: relative;
 }
@@ -93,7 +101,7 @@ body {
 
 .demo-container
 {
-  top: 190vh;
+  top: 300vh;
   position: relative;
   height: 100vh;
 }
@@ -104,15 +112,39 @@ body {
 
 .starback-canvas {
   position: absolute;
-  top: 0;
+  top: -130vh;
   left: 0;
   z-index: -1;
   width: 100vw;
-  height: 160vh;
+  height: 130vh;
   object-fit: cover;
 }
 
-/*  */
+.demo-text
+{
+  color: #e1e7ef;
+  opacity: 0;
+  font-size: 8rem;
+  /* transform: translate(50%, 0); */
+  text-align: center;
+}
+
+.highlight
+{
+  position: absolute;
+  width: 0;
+  height: 33%;
+  background-color: #3a8fff;
+  transform: translate(50%,50%);
+  opacity: 0.5;
+}
+
+.pin-demo
+{
+  height: 100vh;
+}
+
+/* NAV AND FOOTER */
 nav {
   position: sticky;
   top: 0;
