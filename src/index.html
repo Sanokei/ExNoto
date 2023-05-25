@@ -6,6 +6,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;800&display=swap" rel="stylesheet">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="./plugins/context/skins/chrome-dark.css" id="skin" />
+  <link rel="stylesheet" href="./plugins/context/skins/chrome-bright.css" id="skin" />
+  <link rel="stylesheet" href="./plugins/context/skins/hackerman.css" id="skin" /> -->
+  <link rel="stylesheet" href="./plugins/context/skins/kali_dark.css" id="skin" />
+  <!-- <link rel="stylesheet" href="./plugins/context/skins/custom.css" id="skin" /> -->
   <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
@@ -59,28 +64,38 @@
       
       <div class="demo-container">
         <div class="pin-demo">
+          <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
+            disable-tap
+            disable-pan
+            camera-controls
+            min-camera-orbit='auto auto 70%'
+            max-camera-orbit='auto auto 80%'
+            camera-orbit='auto auto 14m'
+            min-field-of-view='50deg'
+            max-field-of-view='70deg'
+            camera-target="0m 0m 0m"
+            shadow-intensity="2"
+            shadow-softness="1"
+            exposure="0.19"
+            interaction-prompt = "none"
+          ></model-viewer>
           <div class="demo-text" id="demo-text">
             From the Known
           </div>
           <div class="mouse-pointer"></div>
           </div>
-          </div>
         </div>
       </div>
-
-    </div>
+    <footer>
+      by <a href="m" target="_blank" rel="noopener">Sano</a> <span class="heart">&hearts;</span>
+    </footer>
   </div>
-  <footer>
-    by <a href="m" target="_blank" rel="noopener">Sano</a> <span class="heart">&hearts;</span>
-  </footer>
-
-
 
   <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
   <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
   <script src="plugins/lumin.min.js"></script>
+  <script src="./plugins/context/context.js"></script>
   <script src="script.js"></script>
-
   <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
   <script>
     const starContainer = document.querySelector(".starback-canvas");

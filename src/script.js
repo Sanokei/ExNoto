@@ -72,6 +72,8 @@ const duneImage = document.querySelector(".wavy-dunes");
 const duneMoonContainer = document.querySelector(".dune-moon-container");
 const starbackCanvas = document.querySelector('.starback-canvas');
 
+const laptopModel = document.querySelector(".laptop-model");
+
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.normalizeScroll(true) // TODO: breaks w/o it cuz zoom on model viwer for planet
 
@@ -99,12 +101,14 @@ function waitForModelLoad(modelElement) {
 async function initAnimations() {
   const planetModel = document.querySelector(".planet-model");
   const moonModel = document.querySelector(".moon-model");
+  const laptopModel = document.querySelector(".laptop-model");
 
   // Wait for both models to load before starting the animations
-  if (planetModel && moonModel) {
+  if (planetModel && moonModel && laptopModel) {
     await Promise.all([
       waitForModelLoad(planetModel),
       waitForModelLoad(moonModel),
+      waitForModelLoad(laptopModel),
     ]);
   }
   else
@@ -164,15 +168,9 @@ const planetTimeline = gsap.timeline({
   },
 });
 
-
-
 planetTimeline.to(planetText, { y: "30vh" });
 
-
 /*             Section 2                */
-
-
-// Pin the dune image
 duneImage.style.position = "fixed";
 duneImage.style.top = 0;
 duneImage.style.left = 0;
@@ -185,7 +183,7 @@ moonModel.style.zIndex = "-1"; // Set a negative z-index to place it behind the 
 const moonTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: moonContainer,
-    start: () => "top center-=30%", // Start the animation when the top of the trigger element reaches the vertical center of the viewport
+    start: () => "top center-=40%", // Start the animation when the top of the trigger element reaches the vertical center of the viewport
     end: () => "bottom+=180% bottom", // Animation ends when the bottom of the trigger element reaches the vertical center of the viewport
     scrub: 0.5,
     pin: [duneMoonContainer, starbackCanvas],
@@ -205,45 +203,68 @@ moonTimeline.to(moonModel, {})
 const demoContainer = document.querySelector(".demo-container");
 const pinDemo = document.querySelector(".pin-demo");
 const demoText = document.querySelector(".demo-text");
+const mousePointer = document.querySelector(".mouse-pointer");
+
+const clickHandler = e => {
+}
+
+const contextMenu = new ContextMenu(document.body, [
+  {text: 'Back', hotkey: 'Alt+Left arrow', disabled: true, onclick: clickHandler},
+  {text: 'Forward', hotkey: 'Alt+Right arrow', disabled: true, onclick: clickHandler},
+  {text: 'Reload', hotkey: 'Ctrl+R', onclick: clickHandler},
+  null,
+  {text: 'Save as...', hotkey: 'Ctrl+S', onclick: clickHandler},
+  {text: 'Print...', hotkey: 'Ctrl+P', onclick: clickHandler},
+  {text: 'Cast...', onclick: clickHandler},
+  {text: 'Translate to English', onclick: clickHandler},
+  null,
+  {text: 'View page source', hotkey: 'Ctrl+U', onclick: clickHandler},
+  {text: 'Inspect', hotkey: 'Ctrl+Shift+I', onclick: clickHandler},
+]);
+
+contextMenu.install();
+contextMenu.show(mousePointer.offsetLeft + 480, mousePointer.offsetTop + 20)
 
 const demoTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: demoContainer,
     // start: () => "top center",
     start: "50% 50%",
-    end: () => "bottom+=2000vh top",
-    scrub: 0.5,
+    end: () => "bottom+=2000 top",
+    scrub: true,
     pin: pinDemo,
-    markers:true,
     // toggleActions: 'play reverse play reverse',
   },
 });
 
-// Set the initial size and position of the highlight
-// gsap.set(".highlight", {
-//   position: "absolute",
-//   left: "50%",
-//   top: "50%",
-//   width: 0,
-//   height: "100%",
-//   backgroundColor: "#3a8fff",
-//   transform: "translate(-50%, -50%)",
-//   opacity: 0.5,
-// });
-
 const luminator = lumin(demoText);
 
 demoTimeline
+  .add('myLabel') // .addLabel() also works 
   .to(demoText, {
     opacity: 1
-  }, ">")
+  }, 'myLabel')
   .set(luminator, {
-    progress: 0 // set progress to 0 so the highlighting doesn't start until the timeline reaches this point
-  }, ">")
-  .to(luminator, {
-    progress: 100, // highlight fully from 0 to 100 percent
-    duration: demoTimeline.duration(), // match the highlight duration to the length of the timeline
-    ease: "none"
+    progress: 10 // set progress to 0 so the highlighting doesn't start until the timeline reaches this point
   })
-  .to()  
+  .to(luminator, {
+    progress: 100, // highlight fully from 0 to 100 percentease: "none"
+  },"<")
+  .set(mousePointer, {
+    x:"50%",
+    y:"50%"
+  }) //  center the element
+  .to(mousePointer, {
+    x:300,
+    y:100,
+    z:20
+  }, "<")
+  .set(".context", {
+    opacity: 1,
+  },">")
+  // .add(
+  //   () => contextMenu.show(mousePointer.offsetLeft + 480, mousePointer.offsetTop + 90)
+  //   , ">"
+  // ) 
 ;
+
