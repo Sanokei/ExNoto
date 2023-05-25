@@ -67,18 +67,11 @@
           <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
             disable-tap
             disable-pan
-            camera-controls
-            touch-action = "none"
-            min-camera-orbit='auto auto 70%'
-            max-camera-orbit='auto auto 80%'
-            camera-orbit='auto auto 14m'
-            min-field-of-view='50deg'
-            max-field-of-view='70deg'
-            camera-target="0m 0m 0m"
             shadow-intensity="2"
             shadow-softness="1"
             exposure="0.19"
             interaction-prompt = "none"
+            camera-orbit="calc(1.5rad - env(window-scroll-y) * 4rad) calc(0deg - env(window-scroll-y) * 180deg) 20"
           ></model-viewer>
           <div class="demo-text" id="demo-text">
             From the Known

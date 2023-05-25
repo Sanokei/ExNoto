@@ -132,6 +132,7 @@ body {
   position: absolute;
   text-align: center;
   z-index: 1;
+  user-select: none;
 }
 
 .pin-demo
@@ -153,6 +154,7 @@ body {
   --progress-bar-color: rgba(30, 41, 59, 0);
   --progress-bar-height: 10px;
   z-index: 0;
+  pointer-events: none;
 }
 
 .mouse-pointer
