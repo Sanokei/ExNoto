@@ -259,6 +259,11 @@ nav.scroll-down {
   margin: 0 1em;
 }
 
+.links :hover
+{
+  background-color: yellow;
+}
+
 .logo {
   font-weight: bold;
   text-transform: uppercase;

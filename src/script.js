@@ -185,9 +185,9 @@ const moonTimeline = gsap.timeline({
     scrub: 0.5,
     pin: [duneMoonContainer, starbackCanvas],
     onUpdate: (self) => {
-      const progress = self.progress + .10;
-      const xPos = Math.sin((progress + (progress * .10)) * Math.PI * 2) * (moonContainer.offsetWidth * 0.4);
-      const yPos = -(Math.cos(progress * Math.PI * 2) * (moonContainer.offsetHeight * 0.3)); // 
+      const progress = self.progress - .50;
+      const xPos = Math.sin((progress + (progress * .10)) * Math.PI) * (moonContainer.offsetWidth * 0.4);
+      const yPos = -(Math.cos(progress * Math.PI) * (moonContainer.offsetHeight * .6)); // 
       gsap.set(moonModel, { x: xPos, y: yPos }); // Update the moon model position
     },
   },
@@ -263,22 +263,17 @@ demoTimeline.to(demoText, {
 const demo2Container = document.querySelector(".demo2-container");
 const pinDemo2 = document.querySelector(".pin-demo2");
 
+gsap.timeline({
+  scrollTrigger: {
+    trigger: demoContainerWrapper,
+    // start: () => "top center",
+    start: () => "bottom bottom",
+    end: () => "bottom top",
+    scrub: true,
+    markers:true,
+    pin: demoWrapper,
+    // toggleActions: 'play reverse play reverse',
+  },
+});
 
-function demo2()
-{
-  const demo2Timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: demoContainerWrapper,
-      // start: () => "top center",
-      start: () => "bottom bottom",
-      end: () => "bottom top",
-      scrub: true,
-      markers:true,
-      pin: demoWrapper,
-      // toggleActions: 'play reverse play reverse',
-    },
-  });
-  return demo2Timeline;
-}
-
-demoTimeline.then( () => demo2() );
+demoTimeline.to()
