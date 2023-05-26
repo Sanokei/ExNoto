@@ -16,18 +16,18 @@
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      ex noto
-    </div>
-    <div class="links">
-      <a href="">Get Started</a>
-      <a href="">Link 2</a>
-      <a href="">Link 3</a>
-      <a href="">Link 4</a>
-    </div>
-  </nav>
-  <div id="container" class="container">
+  <div class="page-container">
+    <nav>
+      <div class="logo">
+        ex noto
+      </div>
+      <div class="links">
+        <a href="">Get Started</a>
+        <a href="">Link 2</a>
+        <a href="">Link 3</a>
+        <a href="">Link 4</a>
+      </div>
+    </nav>
     <div class="planets-container">
       <div class="earth-container">
         <div class="planet-text">Translate the world</div>
@@ -62,29 +62,35 @@
         </div>
       </div>
       
-      <div class="demo-container">
-        <div class="pin-demo">
-          <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
-            disable-tap
-            disable-pan
-            shadow-intensity="2"
-            shadow-softness="1"
-            exposure="0.19"
-            interaction-prompt = "none"
-            camera-orbit="calc(1.5rad - env(window-scroll-y) * 4rad) calc(0deg - env(window-scroll-y) * 180deg) 20"
-          ></model-viewer>
-          <div class="demo-text" id="demo-text">
-            From the Known
+      <div class="demo-container-wrapper">
+        <div class="demo-container">
+          <div class="pin-demo">
+            <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
+              disable-tap
+              disable-pan
+              shadow-intensity="2"
+              shadow-softness="1"
+              exposure="0.19"
+              interaction-prompt = "none"
+              camera-orbit="calc(1.5rad - env(window-scroll-y) * 4rad) calc(0deg - env(window-scroll-y) * 180deg) 20"
+            ></model-viewer>
+            <div class="demo-wrapper">
+              <div class="demo-text" id="demo-text">
+                From the Known
+              </div>
+              <div class="mouse-pointer"></div>
+            </div>
           </div>
-          <div class="mouse-pointer"></div>
+        </div>
+        
+        <div class="demo2-container">
+          <div class="pin-demo2">
+            Demo2
           </div>
         </div>
       </div>
-      <div class="demo2-container">
-        <div class="pin-demo2">
-          Demo2
-        </div>
-      </div>
+
+    </div>
     <footer>
       by <a href="m" target="_blank" rel="noopener">Sano</a> <span class="heart">&hearts;</span>
     </footer>
@@ -107,6 +113,6 @@
         randomOpacity: true,
         backgroundColor: 'transparent',
     });
-</script>
+  </script>
 </body>
 </html>

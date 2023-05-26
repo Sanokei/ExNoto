@@ -57,7 +57,7 @@ window.addEventListener("scroll", () => {
 
 // 
 
-const container = document.getElementById("container");
+const container = document.querySelector(".page-container");
 const body = document.querySelector("body");
 
 const earthContainer = document.querySelector(".earth-container");
@@ -171,9 +171,6 @@ const planetTimeline = gsap.timeline({
 planetTimeline.to(planetText, { y: "30vh" });
 
 /*             Section 2                */
-duneImage.style.position = "fixed";
-duneImage.style.top = 0;
-duneImage.style.left = 0;
 moonModel.style.position = "fixed";
 moonModel.style.bottom = "-20%"; // Adjust the position as needed
 moonModel.style.left = "50%"; // Adjust the position as needed
@@ -205,6 +202,9 @@ const pinDemo = document.querySelector(".pin-demo");
 const demoText = document.querySelector(".demo-text");
 const mousePointer = document.querySelector(".mouse-pointer");
 
+const demoWrapper = document.querySelector(".demo-wrapper");
+const demoContainerWrapper = document.querySelector(".demo-container-wrapper");
+
 const clickHandler = e => {
 }
 
@@ -234,13 +234,13 @@ const demoTimeline = gsap.timeline({
     scrub: true,
     pin: pinDemo,
     // toggleActions: 'play reverse play reverse',
+    // onComplete: demo2(),
   },
 });
 
 const luminator = lumin(demoText);
 
-demoTimeline
-  .to(demoText, {
+demoTimeline.to(demoText, {
     opacity: 1
   }, '<100%')
   .to(luminator, {
@@ -249,11 +249,36 @@ demoTimeline
   .to(mousePointer, {
     x:"25vw",
     y:100,
-    z:20
   }, "<")
   .set(".context", {
     opacity: 1,
   },">")
+  .to(demoWrapper,{
+    y:"100%",
+  },">")
 ;
 
 /*             Section 4                */
+
+const demo2Container = document.querySelector(".demo2-container");
+const pinDemo2 = document.querySelector(".pin-demo2");
+
+
+function demo2()
+{
+  const demo2Timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: demoContainerWrapper,
+      // start: () => "top center",
+      start: () => "bottom bottom",
+      end: () => "bottom top",
+      scrub: true,
+      markers:true,
+      pin: demoWrapper,
+      // toggleActions: 'play reverse play reverse',
+    },
+  });
+  return demo2Timeline;
+}
+
+demoTimeline.then( () => demo2() );

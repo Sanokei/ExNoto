@@ -18,15 +18,27 @@ body {
   color:lavender;
 }
 
-.container {
+html, body {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+nav
+{
+  border-bottom: 2px solid #0f0f0f;
+}
+.page-container {
   height: 1000vh;
   overflow-y: auto;
   position: relative;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  /* display: block; */
 }
 
 .planets-container
 {
   height: 200vh;
+  width: 100vw;
 }
 
 .planet-text {
@@ -42,7 +54,7 @@ body {
 }
 
 .planet-model {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: absolute;
   top: -5vh;
@@ -54,13 +66,14 @@ body {
 }
 
 .wavy-dunes {
-  position: absolute;
+  position: fixed;
   background: url('https://i.pinimg.com/originals/af/52/87/af5287a1edfb83eb1bf018fece4d5f27.png') no-repeat;
   background-size: cover;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   z-index: 1;
-
+  top: 0;
+  left: 0;
   align-items: center;
   justify-content: center;
 }
@@ -71,7 +84,7 @@ body {
 }
 
 .moon-model {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   --poster-color: #e2e8f0;
   --progress-bar-color: rgba(30, 41, 59, 0);
@@ -91,7 +104,7 @@ body {
 .dune-moon-container{
   position: absolute;
   top: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 
 .earth-container
@@ -127,7 +140,7 @@ body {
   font-size: 8rem;
   left: 50%;
   top: 50%;
-  width: 80%;
+  width: 80vw;
   transform: translate(-50%, -50%);
   position: absolute;
   text-align: center;
@@ -145,7 +158,7 @@ body {
 
 .laptop-model
 {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: absolute;
   transform: scale(1.5);
@@ -163,7 +176,6 @@ body {
   background: url('https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/cursor.png?v=1685010072268') no-repeat;
   width: 20px;
   height: 27px;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -174,6 +186,18 @@ body {
 {
   z-index: 2;
   opacity: 0;
+}
+.demo-container-wrapper
+{
+  position: relative;
+  height: 400vh;
+}
+.demo-wrapper
+{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 /* demo 2 */
