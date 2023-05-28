@@ -6,11 +6,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;800&display=swap" rel="stylesheet">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <!-- <link rel="stylesheet" href="./plugins/context/skins/chrome-dark.css" id="skin" />
-  <link rel="stylesheet" href="./plugins/context/skins/chrome-bright.css" id="skin" />
-  <link rel="stylesheet" href="./plugins/context/skins/hackerman.css" id="skin" /> -->
   <link rel="stylesheet" href="./plugins/context/skins/kali_dark.css" id="skin" />
-  <!-- <link rel="stylesheet" href="./plugins/context/skins/custom.css" id="skin" /> -->
   <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
@@ -50,56 +46,46 @@
       </div>
       <div class="dune-moon-container" id="dune-moon-container">
         <div class="moon-container" id="moon-container">
-          <div class="moon-text" id="moon-text">Explore your unknown</div>
+          <div class="moon-text wavy-dunes" id="moon-text">
+            Explore your unknown
+          </div>
+          <div class="star-container">
+            <canvas class="starback-canvas"></canvas>
+          </div>
           <model-viewer class="moon-model" id="moon-model" src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/lowpolymoon.gltf?v=1684684719224" auto-rotate auto-rotate-delay="0" rotation-per-second="-100%"></model-viewer>
         </div>
-        <div class="pin-container">
-          <div class="wavy-dunes"></div>
-        </div>
-        <div class="star-container">
-          <canvas class="starback-canvas">
-          </canvas>
-        </div>
       </div>
+    </div>
+    <div class="demo-container">
+      <div class="pin-demo">
+        <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
+          disable-tap
+          disable-pan
+          shadow-intensity="2"
+          shadow-softness="1"
+          exposure="0.5"
+          interaction-prompt = "none"
+          camera-orbit="calc(1.5rad - (env(window-scroll-y)* 4) * 4rad) calc(0deg - env(window-scroll-y) * 180deg) 20"
+        ></model-viewer>
+        <div class="demo-text">
+          <span class="texting-text">From the Known</span>
+        </div>
+        <div class="mouse-pointer"></div>
+      </div>
+    </div>
+    <div class="pricing-container">
       
-      <div class="demo-container-wrapper">
-        <div class="demo-container">
-          <div class="pin-demo">
-            <model-viewer class="laptop-model" id="laptop-model" src="https://cdn.glitch.me/ff996a1b-fade-4b92-9204-556d38ecd023/Macbook%20Pro.glb?v=1684996008190"
-              disable-tap
-              disable-pan
-              shadow-intensity="2"
-              shadow-softness="1"
-              exposure="0.19"
-              interaction-prompt = "none"
-              camera-orbit="calc(1.5rad - env(window-scroll-y) * 4rad) calc(0deg - env(window-scroll-y) * 180deg) 20"
-            ></model-viewer>
-            <div class="demo-wrapper">
-              <div class="demo-text" id="demo-text">
-                From the Known
-              </div>
-              <div class="mouse-pointer"></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="demo2-container">
-          <div class="pin-demo2">
-            Demo2
-          </div>
-        </div>
-      </div>
-
     </div>
     <footer>
       by <a href="m" target="_blank" rel="noopener">Sano</a> <span class="heart">&hearts;</span>
     </footer>
   </div>
 
-  <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
-  <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
   <script src="plugins/lumin.min.js"></script>
   <script src="./plugins/context/context.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
   <script src="script.js"></script>
   <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
   <script>

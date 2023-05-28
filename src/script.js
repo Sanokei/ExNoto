@@ -74,7 +74,7 @@ const starbackCanvas = document.querySelector('.starback-canvas');
 
 const laptopModel = document.querySelector(".laptop-model");
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 ScrollTrigger.normalizeScroll(true) // TODO: breaks w/o it cuz zoom on model viwer for planet
 
 ScrollTrigger.defaults({
@@ -171,19 +171,18 @@ const planetTimeline = gsap.timeline({
 planetTimeline.to(planetText, { y: "30vh" });
 
 /*             Section 2                */
-moonModel.style.position = "fixed";
-moonModel.style.bottom = "-20%"; // Adjust the position as needed
+moonModel.style.bottom = "-40%"; // Adjust the position as needed
 moonModel.style.left = "50%"; // Adjust the position as needed
 moonModel.style.transform = "translate(-50%, 0) scale(.25)"; // Center and scale the moon model
 moonModel.style.zIndex = "-1"; // Set a negative z-index to place it behind the dune image
 
 const moonTimeline = gsap.timeline({
   scrollTrigger: {
-    trigger: moonContainer,
+    trigger: duneMoonContainer,
     start: () => "top center-=40%", // Start the animation when the top of the trigger element reaches the vertical center of the viewport
     end: () => "bottom+=180% bottom", // Animation ends when the bottom of the trigger element reaches the vertical center of the viewport
-    scrub: 0.5,
-    pin: [duneMoonContainer, starbackCanvas],
+    // scrub: 0.5,
+    pin: moonContainer,
     onUpdate: (self) => {
       const progress = self.progress - .50;
       const xPos = Math.sin((progress + (progress * .10)) * Math.PI) * (moonContainer.offsetWidth * 0.4);
@@ -203,7 +202,6 @@ const demoText = document.querySelector(".demo-text");
 const mousePointer = document.querySelector(".mouse-pointer");
 
 const demoWrapper = document.querySelector(".demo-wrapper");
-const demoContainerWrapper = document.querySelector(".demo-container-wrapper");
 
 const clickHandler = e => {
 }
@@ -216,64 +214,64 @@ const contextMenu = new ContextMenu(document.body, [
   {text: 'Save as...', hotkey: 'Ctrl+S', onclick: clickHandler},
   {text: 'Print...', hotkey: 'Ctrl+P', onclick: clickHandler},
   {text: 'Cast...', onclick: clickHandler},
-  {text: 'Translate to English', onclick: clickHandler},
+  {text: 'Translate to Latin', hotkey:"Last choose language",onclick: clickHandler, class:"translator"},
   null,
   {text: 'View page source', hotkey: 'Ctrl+U', onclick: clickHandler},
   {text: 'Inspect', hotkey: 'Ctrl+Shift+I', onclick: clickHandler},
 ]);
 
 // pinDemo.appendChild(contextMenu);
-contextMenu.show(mousePointer.offsetLeft + 480, mousePointer.offsetTop + 20)
 
 const demoTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: demoContainer,
-    // start: () => "top center",
-    start: "50% 50%",
-    end: () => "bottom+=1700 top",
+    endTrigger:".pricing-container",
+    start:() => "top top",
+    end: () => "bottom+=100% bottom",
+    pin: demoContainer,
     scrub: true,
-    pin: pinDemo,
-    // toggleActions: 'play reverse play reverse',
-    // onComplete: demo2(),
+    onUpdate: (self) => {
+      demoContainer.style.backgroundPosition = `${self.progress * 100}% center`;
+    }
   },
 });
 
 const luminator = lumin(demoText);
+contextMenu.show(demoText.offsetLeft * 1.5, demoText.offsetTop + 100); //TODO: not responsive
 
-demoTimeline.to(demoText, {
-    opacity: 1
-  }, '<100%')
+demoTimeline
+  .to(demoText, {
+    opacity: 1,
+  }, '<')
   .to(luminator, {
     progress: 100, // highlight fully from 0 to 100 percentease: "none"
   },">")
-  .to(mousePointer, {
+  .fromTo(mousePointer, {
+    x:"-25vw",
+  }, {
     x:"25vw",
     y:100,
-  }, "<")
+  },"<")
   .set(".context", {
     opacity: 1,
   },">")
-  .to(demoWrapper,{
-    y:"100%",
+  .to(mousePointer, {
+    x:"27vw",
+    y:280,
+  },">")
+  .set(luminator, {
+    progress: 0,
+  },">")
+  .to('.texting-text', {
+    text: {
+      value: "Ex noto",
+    },
+  },">")
+  .set(".translator", {
+    backgroundColor: "#2777FF",
+  },">")
+  .set(".context", {
+    opacity: 0,
+    delay: 1
   },">")
 ;
-
-/*             Section 4                */
-
-const demo2Container = document.querySelector(".demo2-container");
-const pinDemo2 = document.querySelector(".pin-demo2");
-
-gsap.timeline({
-  scrollTrigger: {
-    trigger: demoContainerWrapper,
-    // start: () => "top center",
-    start: () => "bottom bottom",
-    end: () => "bottom top",
-    scrub: true,
-    markers:true,
-    pin: demoWrapper,
-    // toggleActions: 'play reverse play reverse',
-  },
-});
-
-demoTimeline.to()

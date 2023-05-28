@@ -27,7 +27,6 @@ nav
   border-bottom: 2px solid #0f0f0f;
 }
 .page-container {
-  height: 1000vh;
   overflow-y: auto;
   position: relative;
   overflow-x: hidden;
@@ -37,8 +36,8 @@ nav
 
 .planets-container
 {
-  height: 200vh;
-  width: 100vw;
+  position: relative;
+  height: 390vh;
 }
 
 .planet-text {
@@ -118,7 +117,7 @@ nav
 
 .starback-canvas {
   position: absolute;
-  top: -130vh;
+  top: -40vh;
   left: 0;
   z-index: -1;
   width: 100vw;
@@ -128,9 +127,10 @@ nav
 
 .demo-container
 {
-  top: 300vh;
   position: relative;
   height: 100vh;
+  background: url('https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Hazy_Afternoon_Backplate_001.png?v=1685238904735') no-repeat;
+  background-size: cover;
 }
 
 .demo-text
@@ -138,22 +138,22 @@ nav
   color: #e1e7ef;
   opacity: 0;
   font-size: 8rem;
-  left: 50%;
   top: 50%;
-  width: 80vw;
-  transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translate(-50%,-50%);
   position: absolute;
   text-align: center;
+  width: 80vw;
   z-index: 1;
   user-select: none;
 }
 
 .pin-demo
 {
+  top:0;
   position: relative;
-  width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 3;
 }
 
 .laptop-model
@@ -161,13 +161,15 @@ nav
   width: 100vw;
   height: 100vh;
   position: absolute;
-  transform: scale(1.5);
   left: 0;
   --poster-color: #e2e8f0;
   --progress-bar-color: rgba(30, 41, 59, 0);
   --progress-bar-height: 10px;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
+
+  background-color: #000000;
+  opacity: 50%;
 }
 
 .mouse-pointer
@@ -179,34 +181,25 @@ nav
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  z-index: 3;
-
+  z-index: 2;
 }
 .context
 {
-  z-index: 2;
   opacity: 0;
-}
-.demo-container-wrapper
-{
-  position: relative;
-  height: 400vh;
 }
 .demo-wrapper
 {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
 
-/* demo 2 */
-
-.demo2-container
+.pricing-container
 {
-  position: relative;
-  top: 570vh;
   height: 100vh;
+  position: relative;
+  background-color:#e1e7ef;
 }
 
 /* DIRTY HACK DONT LOOK */
@@ -214,18 +207,6 @@ ins
 {
   background: var(--lumin-background-color, rgba(0, 204, 255, 0.631)) !important;
 }
-
-/* .highlight
-{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 10%;
-  background-color: #3a8fff;
-  transform: translate(-50%,-50%);
-  opacity: 0.5;
-} */
 
 /* NAV AND FOOTER */
 nav {

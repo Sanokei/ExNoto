@@ -72,6 +72,9 @@ class ContextMenu {
         label.innerText = data.hasOwnProperty('text') ? data['text'].toString() : '';
         item.appendChild(label);
 
+        if(data.hasOwnProperty('class'))
+            item.classList.add(data['class'].toString());
+
         if (data.hasOwnProperty('disabled') && data['disabled']) {
             item.classList.add('disabled');
         } else {
