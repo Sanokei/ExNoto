@@ -45,6 +45,7 @@ class ContextMenu {
     getMenuDom() {
         const menu = document.createElement('div');
         menu.classList.add('context');
+        menu.style.zIndex = 1;
 
         for (const item of this.items) {
             menu.appendChild(this.itemToDomEl(item));

@@ -202,11 +202,12 @@ const demoText = document.querySelector(".demo-text");
 const mousePointer = document.querySelector(".mouse-pointer");
 
 const demoWrapper = document.querySelector(".demo-wrapper");
+const pinDemoWrapper = document.querySelector(".pin-demo-wrapper");
 
 const clickHandler = e => {
 }
 
-const contextMenu = new ContextMenu(document.body, [
+const contextMenu = new ContextMenu(pinDemoWrapper, [
   {text: 'Back', hotkey: 'Alt+Left arrow', disabled: true, onclick: clickHandler},
   {text: 'Forward', hotkey: 'Alt+Right arrow', disabled: true, onclick: clickHandler},
   {text: 'Reload', hotkey: 'Ctrl+R', onclick: clickHandler},
@@ -262,16 +263,33 @@ demoTimeline
   .set(luminator, {
     progress: 0,
   },">")
+  .set(".translator", {
+    backgroundColor: "#2777FF",
+  },">")
   .to('.texting-text', {
     text: {
       value: "Ex noto",
     },
-  },">")
-  .set(".translator", {
-    backgroundColor: "#2777FF",
   },">")
   .set(".context", {
     opacity: 0,
     delay: 1
   },">")
 ;
+
+/*             Section 4                  */
+const colorTL = gsap.timeline();
+ScrollTrigger.create({
+   
+  trigger: '.pricing-container',
+  start:"top 50%",
+  end:"bottom 0%",
+
+  onEnter: () => {
+    colorTL.to(['.pricing-container','.curved'], { duration: 0.4, opacity: 1})
+  },
+  
+  onLeaveBack: () => {
+    colorTL.to(['.pricing-container','.curved'], { duration: 0.4, opacity: 0})
+  },
+})
