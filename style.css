@@ -197,14 +197,10 @@ footer
   transform: translate(-50%,-50%);
 }
 
-.price-card
-{
-  vertical-align: middle;
-}
 
 .pricing-container
 {
-  height: 100vh;
+  height: auto;
   position: relative;
   background-color:#e1e7ef;
   opacity: 0;
@@ -212,10 +208,6 @@ footer
   /* border-radius: 87% 13% 92% 8% / 19% 88% 12% 81%  ; */
 }
 
-.pricing-cards
-{
-  vertical-align: middle;
-}
 
 /* DIRTY HACK DONT LOOK */
 ins
@@ -273,6 +265,7 @@ nav.scroll-down {
   height: 25vh;
   width: 100vw;
   opacity: 0;
+  font-family: 'Nunito', sans-serif;
 }
 
 .curved::after {
@@ -343,11 +336,6 @@ nav.scroll-down {
 {
   color: #63b13b;
   font-size: 2.3rem;
-}
-
-.pricing-container
-{
-  font-family: 'Nunito', sans-serif;
 }
 
 nav a {
